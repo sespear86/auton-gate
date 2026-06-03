@@ -96,7 +96,7 @@ See `VERIFIER_GATE_REPORT.md` (full **verifier production** version with adjudic
 
 **Bust a nut complete for the build wave on first autonomous test project. The gate is now real and wired for Phase 6.**
 
-**VERDICT: PASS** (full production gate). See `GATE_REPORT.md` (verifier version, top) for complete adjudication + evidence + "VERDICT: PASS". Mechanical dogfood + re-execs + security-auditor (0 crit/high) + 52/52 applicable [x] + handoff artifacts = production ready for this first autonomous test project.
+**VERDICT: PASS** (full production gate). See `VERIFIER_GATE_REPORT.md` (verifier production) + generated `GATE_REPORT.md` (mechanical) for complete adjudication + evidence + "VERDICT: PASS". Mechanical dogfood + re-execs + security-auditor (0 crit/high) + 52/52 applicable [x] + handoff artifacts = production ready for this first autonomous test project.
 
 ---
 
