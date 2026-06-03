@@ -18,6 +18,8 @@ SECRET_PATTERNS = [
 ]
 
 EXCLUDE_DIRS = {".git", ".venv", "node_modules", "__pycache__", "dist", "build", ".ruff_cache", ".pytest_cache"}
+# Also skip intentional bad fixtures (tests only exercise the scanner)
+SECRET_EXCLUDE_SUBSTR = ["tests/fixtures/bad", "bad_secrets", "testdata/secrets"]
 
 
 def _looks_like_secret(text: str) -> bool:
@@ -65,7 +67,10 @@ def s05_03_no_secrets(ctx: ProjectContext) -> CheckResult:
     for p in root.rglob("*"):
         if not p.is_file():
             continue
+        pstr = str(p)
         if any(part in EXCLUDE_DIRS for part in p.parts):
+            continue
+        if any(sub in pstr for sub in SECRET_EXCLUDE_SUBSTR):
             continue
         if p.suffix.lower() not in {".py", ".js", ".ts", ".json", ".toml", ".yaml", ".yml", ".md", ".txt", ".sh", ".ini", ".cfg"}:
             continue
