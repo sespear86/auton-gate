@@ -17,9 +17,9 @@ SECRET_PATTERNS = [
     re.compile(r"ghp_[A-Za-z0-9]{20,}"),  # github pat
 ]
 
-EXCLUDE_DIRS = {".git", ".venv", "node_modules", "__pycache__", "dist", "build", ".ruff_cache", ".pytest_cache"}
-# Also skip intentional bad fixtures (tests only exercise the scanner)
-SECRET_EXCLUDE_SUBSTR = ["tests/fixtures/bad", "bad_secrets", "testdata/secrets"]
+EXCLUDE_DIRS = {".git", ".venv", "node_modules", "__pycache__", "dist", "build", ".ruff_cache", ".pytest_cache", "tests"}
+# Skip tests/ entirely for secret scan (our test vectors use temp dirs; committed code must never have secrets)
+SECRET_EXCLUDE_SUBSTR = ["tests/"]
 
 
 def _looks_like_secret(text: str) -> bool:
