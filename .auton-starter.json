@@ -1,0 +1,11 @@
+{
+  "source_auton_id": "ee70444d",
+  "recommended_project": "auton-gate",
+  "target_repo": "~/auton-gate",
+  "design_path": "/tmp/grok-auton-artifacts-ee70444d/DESIGN.md",
+  "plan_path": "/tmp/grok-auton-artifacts-ee70444d/PLAN.md",
+  "checklist_default": "~/.grok/skills/autonomous/docs/PRODUCTION_CHECKLIST.md",
+  "next_autonomous_prompt": "/autonomous Build production-ready `auton-gate`: a Python CLI that implements the mechanical portions of ~/.grok/skills/autonomous/docs/PRODUCTION_CHECKLIST.md for an arbitrary project path, supports --auton-id linking to ~/.grok/auton-projects/<id>.json, emits GATE_REPORT.md + JSON + exit code, includes pytest fixtures, GitHub Actions CI, README with integration section for Phase 6 of the autonomous skill. New git repo at ~/auton-gate (not inside grok-hermes-symbiosis or grok-mempalace-integration). No paid hosting. Target: pip install -e . && auton-gate check . passes on self after implementation.",
+  "mempalace_drawer_build": "projects/auton-gate",
+  "profile_default": "cli"
+}

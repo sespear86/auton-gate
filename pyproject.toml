@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "auton-gate"
+version = "0.1.0"
+description = "Mechanical Production Readiness Gate for /autonomous runs (implements portions of PRODUCTION_CHECKLIST.md)"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{name = "Grok Autonomous (ee70444d identification)"}]
+license = {text = "MIT"}
+dependencies = [
+    "typer[all]>=0.9",
+]
+
+[project.scripts]
+auton-gate = "auton_gate.cli:app"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --tb=short"
