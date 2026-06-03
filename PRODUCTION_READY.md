@@ -54,7 +54,7 @@ See `VERIFIER_GATE_REPORT.md` (full **verifier production** version with adjudic
 - s05.03: leaks:[], count:0, env_committed:false (gate_report.json + s05 scan + no .env files).
 - CI: 1 file `.github/workflows/ci.yml` (lint-test: ruff + pytest + smoke `python -m auton_gate.cli check .`).
 - README: 3+ core headings (quickstart/usage/production); CHANGELOG.md 0.1.0 full.
-- Git: .git present, porcelain 0 (post-ignore), 8+ clean commits ending b508b53, linear history.
+- Git: .git present, porcelain 0 (post-ignore), commits ending f3f1676 (amend incl VERIFIER_GATE_REPORT.md); pushed with-lease to GH.
 - Security: subagent 019e8f55: 0 crit/high; all subprocess shell=False (runner.py:24, s05:46, s11:31, cli:113); no secrets per grep + s05.
 
 **Verifier adjudication summary (full in GATE_REPORT.md):** 52 [x] applicable items (every bullet in PRODUCTION_CHECKLIST.md with 1-2 sent evidence: paths, outputs, counts, excerpts); 3 optional non-blocking gaps (§5.7 dep audit, §6.2 remote CI green, §6.5 pre-commit); 18 [SKIP] (CLI tailoring §9/10 service/deploy + some partials). Security-auditor PASS. **VERDICT: PASS**.
