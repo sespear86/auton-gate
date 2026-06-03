@@ -85,15 +85,18 @@ def test_s03_s04_on_good_python_project(tmp_path: Path):
 
 
 def test_s05_secrets_bad_fixture_fails(tmp_path: Path):
-    """B-T4: bad_secrets fixture must cause s05.03 FAIL."""
+    """B-T4: create temp bad dir with secret; must cause s05.03 FAIL (no committed secrets in tree)."""
     from auton_gate.registry import REGISTRY
     from auton_gate.runner import CheckRunner
     REGISTRY.load_builtin_checks()
-    bad_dir = Path("tests/fixtures/bad_secrets")
-    ctx = load_config(bad_dir, profile="cli")
+    bad = tmp_path / "badcase"
+    bad.mkdir()
+    (bad / "leak.py").write_text('AWS_SECRET="aws_secret=AKIAFAKE1234567890ABCDEFEXAMPLE"')
+    (bad / "pkey.txt").write_text("-----BEGIN RSA PRIVATE KEY-----\nMIIE...\n")
+    ctx = load_config(bad, profile="cli")
     runner = CheckRunner(ctx)
     res = runner.run_check("s05.03.no_secrets_in_repo")
-    assert res.status == Status.FAIL, f"expected FAIL on bad_secrets, got {res.status}"
+    assert res.status == Status.FAIL, f"expected FAIL on temp bad, got {res.status}"
     assert len(res.evidence.get("leaks", [])) > 0
 
 
