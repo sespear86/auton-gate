@@ -1,0 +1,2 @@
+# Minimal for s08.01 lockfile presence (modern py projects may use pyproject + uv/poetry lock instead)
+typer>=0.9

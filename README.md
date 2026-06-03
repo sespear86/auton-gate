@@ -15,16 +15,31 @@ Mechanical Production Readiness Gate CLI for the `/autonomous` skill.
 - Dogfoods on itself.
 - Supports `--auton-id` to link `~/.grok/auton-projects/<id>.json` (research/design paths, etc.).
 
-## Quickstart (once implemented)
+## Quickstart
 
 ```bash
 pip install -e .
 auton-gate check .
-# or with context from a prior autonomous run:
+# or with context from a prior autonomous run (links research/design/PRODUCTION_READY.md):
 auton-gate check . --auton-id ee70444d
+# explain a failing check
+auton-gate explain s05.03.no_secrets_in_repo
+auton-gate version
 ```
 
-See `docs/INTEGRATION_AUTONOMOUS.md` (to be written in build) and the embedded `docs/DESIGN.md` for Phase 6.1–6.7 subroutine.
+**Exit codes**: 0 = MECHANICAL_PASS (no strict fails); 1 = FAIL or --strict with manuals; 2 = error.
+
+Reports: `GATE_REPORT.md` (human + verifier) and `gate_report.json` (machine) written to cwd (or --output-dir).
+
+See `docs/INTEGRATION_AUTONOMOUS.md` for exact Phase 6.1–6.7 subroutine in `/autonomous`, and the embedded `docs/DESIGN.md` + `docs/CHECKLIST_MAPPING_v1.md`.
+
+## Usage in autonomous (Phase 6)
+
+See the dedicated integration doc. Typical:
+```bash
+auton-gate check "$REPO_ROOT" --auton-id "$AUTON_ID" --checklist ~/.grok/skills/autonomous/docs/PRODUCTION_CHECKLIST.md --profile cli
+# then fix any FAILs, repeat until 0, then verifier subagent for full production VERDICT: PASS
+```
 
 ## Bootstrap note (from ee70444d)
 

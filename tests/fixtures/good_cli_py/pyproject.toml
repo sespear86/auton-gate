@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "good-cli"
+version = "0.0.1"
+description = "Good fixture for auton-gate tests"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+good-cli = "good_cli.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

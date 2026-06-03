@@ -1,0 +1,2 @@
+# fake for fixture lock test
+typer>=0.9
