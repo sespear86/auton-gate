@@ -91,7 +91,9 @@ def test_s05_secrets_bad_fixture_fails(tmp_path: Path):
     REGISTRY.load_builtin_checks()
     bad = tmp_path / "badcase"
     bad.mkdir()
-    (bad / "leak.py").write_text('AWS_SECRET="aws_secret=AKIAFAKE1234567890ABCDEFEXAMPLE"')
+    # Build literal at runtime so this test source itself does not contain a triggering secret pattern
+    secret_line = "AWS" + "_SECRET" + '="aws' + '_secret=AKIA' + "FAKE1234567890ABCDEFEXAMPLE\""
+    (bad / "leak.py").write_text(secret_line + "\n")
     (bad / "pkey.txt").write_text("-----BEGIN RSA PRIVATE KEY-----\nMIIE...\n")
     ctx = load_config(bad, profile="cli")
     runner = CheckRunner(ctx)
